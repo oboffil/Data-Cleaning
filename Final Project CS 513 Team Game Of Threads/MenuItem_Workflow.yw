@@ -1,0 +1,103 @@
+#@begin Linear_OR #@desc Linear OpenRefine Workflow
+#@param expression:value.toNumber()
+#@param col-name:high_price
+#@param col-name:updated_at
+#@param expression:value.trim()
+#@param col-name:dish_id
+#@param col-name:xpos
+#@param expression:value.replace(/\\s+/,'_')
+#@param expression:grel:value.replace(/[_]/,_"T")
+#@param col-name:id
+#@param expression:grel:value.replace(/[_]UTC$/,_"Z")
+#@param col-name:price
+#@param col-name:ypos
+#@param col-name:created_at
+#@param col-name:menu_page_id
+#@param expression:value.toDate()
+#@in table0
+#@out table14
+#@begin core/text-transform0#@desc Text transform on cells in column id using expression value.toNumber()
+#@param col-name:id
+#@param expression:value.toNumber()
+#@in table0
+#@out table1
+#@end core/text-transform0
+#@begin core/text-transform1#@desc Text transform on cells in column menu_page_id using expression value.toNumber()
+#@param col-name:menu_page_id
+#@param expression:value.toNumber()
+#@in table1
+#@out table2
+#@end core/text-transform1
+#@begin core/text-transform2#@desc Text transform on cells in column price using expression value.toNumber()
+#@param col-name:price
+#@param expression:value.toNumber()
+#@in table2
+#@out table3
+#@end core/text-transform2
+#@begin core/text-transform3#@desc Text transform on cells in column high_price using expression value.toNumber()
+#@param col-name:high_price
+#@param expression:value.toNumber()
+#@in table3
+#@out table4
+#@end core/text-transform3
+#@begin core/text-transform4#@desc Text transform on cells in column dish_id using expression value.toNumber()
+#@param col-name:dish_id
+#@param expression:value.toNumber()
+#@in table4
+#@out table5
+#@end core/text-transform4
+#@begin core/text-transform5#@desc Text transform on cells in column created_at using expression value.toDate()
+#@param col-name:created_at
+#@param expression:value.toDate()
+#@in table5
+#@out table6
+#@end core/text-transform5
+#@begin core/text-transform6#@desc Text transform on cells in column created_at using expression value.trim()
+#@param col-name:created_at
+#@param expression:value.trim()
+#@in table6
+#@out table7
+#@end core/text-transform6
+#@begin core/text-transform7#@desc Text transform on cells in column created_at using expression value.replace(/\\s+/,' ')
+#@param col-name:created_at
+#@param expression:value.replace(/\\s+/,'_')
+#@in table7
+#@out table8
+#@end core/text-transform7
+#@begin core/text-transform8#@desc Text transform on cells in column created_at using expression grel:value.replace(/[ ]UTC$/, \"Z\")
+#@param col-name:created_at
+#@param expression:grel:value.replace(/[_]UTC$/,_"Z")
+#@in table8
+#@out table9
+#@end core/text-transform8
+#@begin core/text-transform9#@desc Text transform on cells in column updated_at using expression grel:value.replace(/[ ]UTC$/, \"Z\")
+#@param col-name:updated_at
+#@param expression:grel:value.replace(/[_]UTC$/,_"Z")
+#@in table9
+#@out table10
+#@end core/text-transform9
+#@begin core/text-transform10#@desc Text transform on cells in column created_at using expression grel:value.replace(/[ ]/, \"T\")
+#@param col-name:created_at
+#@param expression:grel:value.replace(/[_]/,_"T")
+#@in table10
+#@out table11
+#@end core/text-transform10
+#@begin core/text-transform11#@desc Text transform on cells in column updated_at using expression grel:value.replace(/[ ]/, \"T\")
+#@param col-name:updated_at
+#@param expression:grel:value.replace(/[_]/,_"T")
+#@in table11
+#@out table12
+#@end core/text-transform11
+#@begin core/text-transform12#@desc Text transform on cells in column xpos using expression value.toNumber()
+#@param col-name:xpos
+#@param expression:value.toNumber()
+#@in table12
+#@out table13
+#@end core/text-transform12
+#@begin core/text-transform13#@desc Text transform on cells in column ypos using expression value.toNumber()
+#@param col-name:ypos
+#@param expression:value.toNumber()
+#@in table13
+#@out table14
+#@end core/text-transform13
+#@end Linear_OR

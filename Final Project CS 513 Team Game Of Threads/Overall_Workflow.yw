@@ -1,0 +1,47 @@
+# @begin Overall_Workflow @desc Overall workflow for team "Game of Threads" final project for CS 513
+# @in Menu.csv
+# @in MenuItem.csv
+# @in MenuPage.csv
+# @in Dish.csv
+
+# @begin OpenRefine @desc Convert data types to correct type, cluster similar text entries to same entry, use regular expressions to fix text formatting.
+# @in Menu.csv
+# @in MenuItem.csv
+# @in MenuPage.csv
+# @begin Overall_Workflow @desc Overall workflow for team "Game of Threads" final project for CS 513
+# @in Menu_Metadata @URI file:raw_data/Menu.csv 
+# @in MenuItem_Metadata @URI file:raw_data/MenuItem.csv
+# @in MenuPage_Metadata @URI file:raw_data/MenuPage.csv
+# @in Dish_Metadata @URI file:raw_data/Dish.csv
+
+# @begin OpenRefine @desc Convert data types to correct type, cluster similar text entries to same entry, use regular expressions to fix text formatting.
+# @in Menu_Metadata
+# @in MenuItem_Metadata
+# @in MenuPage_Metadata
+# @in Dish_Metadata
+
+# @out Menu_Cleaned @URI file:cleaned_data/Menu_Cleaned.csv
+# @out MenuItem_Cleaned @URI file:cleaned_data/MenuItem_Cleaned.csv
+# @out MenuPage_Cleaned @URI file:cleaned_data/MenuPage_Cleaned.csv
+# @out Dish_Cleaned @URI file:cleaned_data/Dish_Cleaned.csv
+
+# @end OpenRefine
+
+
+# @begin Load_Into_SQL_Schema @desc Load CSV files in to MSSQL database using database's load CSV tool
+# @in Dish_Cleaned
+# @out Dish_SQL_Table
+
+# @end Load_Into_SQL_Schema
+
+# @begin Integrity_Constraints @desc Check for properly formatted tuples for use case and remove tuples that violate integrity constraints
+# @in Dish_SQL_Table
+
+# @out Dish_SQL_Table_Formatted
+
+# @end Integrity_Constraints
+
+# @out Dish_SQL_Table_Formatted
+
+
+# @end Overall_Workflow

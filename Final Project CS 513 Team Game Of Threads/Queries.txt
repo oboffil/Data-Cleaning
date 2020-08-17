@@ -1,0 +1,63 @@
+-- Menu Table
+select * from Menu
+
+-- Cleaned_Dish Table
+select * from Cleaned_Dish
+
+-- Cleaned Menu Item Table
+select *  from [dbo].[Cleaned_Menu_Item] 
+
+-- Cleaned Menu Page Table
+select * from [dbo].[Cleaned_Menu_Page]
+
+-- Selecting just Dish with prices
+select * into Dish_price from [dbo].[Cleaned_Dish] where lowest_price <> 0 and highest_price <> 0
+
+-- Clean all Dish that have names NULL or #NAME?
+delete from [dbo].[Cleaned_Dish] where name is null or name = '#NAME?'
+
+-- Drop unesesaries columns
+alter table [dbo].[Dish_price] drop column menus_appeared, times_appeared
+
+-- Original Dish Table
+select * from [dbo].[Dish]
+
+-- Cleaned Dish Table
+Select * from [dbo].[Cleaned_Dish]
+
+-- See the original names for a specific Dish 
+select * from [dbo].[Dish] where name = 'Tomato Soup'
+
+-- See the cleaned names for a specific Dish 
+select * from [dbo].[Cleaned_Dish] where name = 'Tomato Soup'
+
+-- Check integrity between the original file and cleaned files using a specific Dish 
+select iif((select count(*) from Dish where name = 'Tomato Soup') = (select count(*) from Cleaned_Dish where name = 'Tomato Soup'), 'TRUE', 'FALSE') as Resoult
+
+-- Check integrity in the primary key
+select distinct id, count(id) as '#id' from Cleaned_Dish group by id having count(id) > 1
+
+-- Check integrity in price columns
+select count(*) as Result from  Cleaned_Dish where lowest_price > highest_price
+
+-- Check integrity in date columns
+select count(*) as Resoult from  Cleaned_Dish where first_appeared > last_appeared and last_appeared <> 0
+
+-- calculate average price pers disth
+select name, ROUND(AVG(lowest_price) + AVG(highest_price) / 2, 2) AS 'AVERAGE DISH PLATE' from [dbo].[Cleaned_Dish] group by name
+
+-- Last time a dish appears in the menu
+select distinct name, max(last_appeared) as 'Lats year in menu' from [dbo].[Cleaned_Dish] group by name
+
+-- Oldest year in the menu 
+select min(first_appeared) as 'Oldest year in the menu' from [dbo].[Cleaned_Dish]
+
+
+
+
+
+
+
+
+
+

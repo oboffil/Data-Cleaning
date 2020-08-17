@@ -1,0 +1,81 @@
+
+/* Start of top-level graph */
+digraph Workflow {
+rankdir=TB
+
+/* Title for graph */
+fontname=Helvetica; fontsize=18; labelloc=t
+label=Overall_Workflow
+
+/* Start of double cluster for drawing box around nodes in workflow */
+subgraph cluster_workflow_box_outer { label=""; color=black; penwidth=2
+subgraph cluster_workflow_box_inner { label=""; penwidth=0
+
+/* Style for nodes representing atomic programs in workflow */
+node[shape=box style=filled fillcolor="#CCFFCC" peripheries=1 fontname=Helvetica]
+
+/* Nodes representing atomic programs in workflow */
+OpenRefine [shape=record rankdir=LR label="{<f0> OpenRefine |<f1> Convert data types to correct type, cluster similar text entries to same entry, use regular expressions to fix text formatting.}"];
+Load_Into_SQL_Schema [shape=record rankdir=LR label="{<f0> Load_Into_SQL_Schema |<f1> Load CSV files in to MSSQL database using database's load CSV tool}"];
+Integrity_Constraints [shape=record rankdir=LR label="{<f0> Integrity_Constraints |<f1> Check for properly formatted tuples for use case and remove tuples that violate integrity constraints}"];
+
+/* Style for nodes representing non-parameter data channels in workflow */
+node[shape=box style="rounded,filled" fillcolor="#FFFFCC" peripheries=1 fontname=Helvetica]
+
+/* Nodes for non-parameter data channels in workflow */
+Menu_Metadata [shape=record rankdir=LR label="{<f0> Menu_Metadata |<f1> file\:raw_data/Menu.csv}"];
+MenuItem_Metadata [shape=record rankdir=LR label="{<f0> MenuItem_Metadata |<f1> file\:raw_data/MenuItem.csv}"];
+MenuPage_Metadata [shape=record rankdir=LR label="{<f0> MenuPage_Metadata |<f1> file\:raw_data/MenuPage.csv}"];
+Dish_Metadata [shape=record rankdir=LR label="{<f0> Dish_Metadata |<f1> file\:raw_data/Dish.csv}"];
+Dish_Cleaned [shape=record rankdir=LR label="{<f0> Dish_Cleaned |<f1> file\:cleaned_data/Dish_Cleaned.csv}"];
+Dish_SQL_Table
+Dish_SQL_Table_Formatted
+
+/* Style for nodes representing parameter channels in workflow */
+node[shape=box style="rounded,filled" fillcolor="#FCFCFC" peripheries=1 fontname=Helvetica]
+
+/* Nodes representing parameter channels in workflow */
+
+/* Edges representing connections between programs and channels */
+OpenRefine -> Menu_Cleaned
+OpenRefine -> MenuItem_Cleaned
+OpenRefine -> MenuPage_Cleaned
+OpenRefine -> Dish_Cleaned
+Menu_Metadata -> OpenRefine
+MenuItem_Metadata -> OpenRefine
+MenuPage_Metadata -> OpenRefine
+Dish_Metadata -> OpenRefine
+Load_Into_SQL_Schema -> Dish_SQL_Table
+Dish_Cleaned -> Load_Into_SQL_Schema
+Integrity_Constraints -> Dish_SQL_Table_Formatted
+Dish_SQL_Table -> Integrity_Constraints
+
+/* End of double cluster for drawing box around nodes in workflow */
+}}
+
+/* Style for nodes representing workflow input ports */
+node[shape=circle style="rounded,filled" fillcolor="#FFFFFF" peripheries=1 fontname=Helvetica width=0.2]
+
+/* Nodes representing workflow input ports */
+Menu_Metadata_input_port [label=""]
+MenuItem_Metadata_input_port [label=""]
+MenuPage_Metadata_input_port [label=""]
+Dish_Metadata_input_port [label=""]
+
+/* Style for nodes representing workflow output ports */
+node[shape=circle style="rounded,filled" fillcolor="#FFFFFF" peripheries=1 fontname=Helvetica width=0.2]
+
+/* Nodes representing workflow output ports */
+Dish_SQL_Table_Formatted_output_port [label=""]
+
+/* Edges from input ports to channels */
+Menu_Metadata_input_port -> Menu_Metadata
+MenuItem_Metadata_input_port -> MenuItem_Metadata
+MenuPage_Metadata_input_port -> MenuPage_Metadata
+Dish_Metadata_input_port -> Dish_Metadata
+
+/* Edges from channels to output ports */
+Dish_SQL_Table_Formatted -> Dish_SQL_Table_Formatted_output_port
+
+/* End of top-level graph */
+}
